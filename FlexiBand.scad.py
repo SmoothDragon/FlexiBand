@@ -3,7 +3,7 @@
 '''Salt pig combined with Super Mario Brothers pipe
 '''
 
-import solid as sd
+import solid2 as sd
 import numpy as np
 
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     fn = 64
 
     r = 1
-    ratio = .25
+    ratio = .1
     n = 3  # iterations
     final = iterSmoothX(r, ratio, n)
     size = 2**n * 4 * (1+ratio) * r  # side length or iteration

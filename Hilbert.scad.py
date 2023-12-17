@@ -61,42 +61,58 @@ def gosper_path(p0, p1, order):
         yield from list(gosper_path(p0+2*v+w, p0+2*v, order-1))[::-1]
         yield from list(gosper_path(p0+3*v+w, p0+2*v+w, order-1))[::-1]
 
-limit = 5
-# Equilateral triangle
-theta = np.linspace(0, 2*np.pi, 4)[:-1]
-theta = np.exp(1j*theta)
-level = [np.exp(1j*theta)]
-for i in range(limit-1):
-    level.append(gosper_iter(level[i]))
+def HilbertCurve(n):
+    '''Return n iteration Hilbert curve.
+    Alphabet : A, B
+    Constants : F + −
+    Axiom : A
+    Production rules:
+        A → +BF−AFA−FB+
+        B → −AF+BFB+FA−
+    '''
+    curve = 'A'
+    for _ in range(n):
+        n_curve = ''
+        for ch in curve:
+            if ch == 'A':
+                n_curve += '+BF−AFA−FB+'
+            elif ch == 'B':
+                n_curve += '−AF+BFB+FA−'
+            else:
+                n_curve += ch
+        curve = n_curve
+    return curve
 
 
-fig, ax = plt.subplots()
+# fig, ax = plt.subplots()
 # plt.axis('off')
-resolution = 512
+# resolution = 512
 
-k = 5
-limit = k+2
-bound = (-limit, limit)
-ax.set_aspect('equal')
-ax.set_xlim(*bound)
-ax.set_ylim(*bound)
+# k = 5
+# limit = k+2
+# bound = (-limit, limit)
+# ax.set_aspect('equal')
+# ax.set_xlim(*bound)
+# ax.set_ylim(*bound)
 
 
-iter = 3
 # dragon, = ax.plot(*xy(np.array(list(gosper_path(*theta[:2], iter)))), 'b', linewidth=1)
 # dragon, = ax.plot(*xy(theta[1]*np.array(list(gosper_path(*theta[:2], iter)))), 'r', linewidth=1)
 # dragon, = ax.plot(*xy(theta[2]*np.array(list(gosper_path(*theta[:2], iter)))), 'g', linewidth=1)
 # plt.show()
 
-dragon = np.array(list(gosper_path(*theta[:2], iter)))
-dragon = np.concatenate([dragon, theta[1]*dragon, theta[2]*dragon])
+# dragon = np.array(list(gosper_path(*theta[:2], iter)))
+# dragon = np.concatenate([dragon, theta[1]*dragon, theta[2]*dragon])
 
-gosper = polygon(points=list(zip(*xy(12.5*dragon))))
-gosper = minkowski()(gosper, circle(r=.15))
+# gosper = polygon(points=list(zip(*xy(12.5*dragon))))
+# gosper = minkowski()(gosper, circle(r=.15))
 
-gosper = linear_extrude(height=10)(gosper)
-print(scad_render(gosper))
+# gosper = linear_extrude(height=10)(gosper)
+# print(scad_render(gosper))
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+
+    print(HilbertCurve(1))
+    print(HilbertCurve(2))

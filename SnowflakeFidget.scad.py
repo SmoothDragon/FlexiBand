@@ -16,7 +16,7 @@ import sys
 def xy(vec):
     return vec.real, vec.imag
 
-def snowflake(r=1, w=2, l=5):
+def snowflake(r=1, w=2, l=8):
     # w = (1 + 1j*np.sqrt(3))/2  # sixth root of unity
     dot = sd.circle(r, _fn=6)
     edge = sd.hull()(dot, sd.translate([l, 0])(dot))
@@ -32,6 +32,7 @@ def snowflake(r=1, w=2, l=5):
     # branch += sd.translate([3*l,0])(sd.rotate(60)(edge2))
     # branch += sd.translate([3*l,0])(sd.rotate(-60)(edge2))
     flake = sd.union()(*[sd.rotate(i*60)(branch) for i in range(6)])
+    flake += sd.circle(3*r, _fn=6)
     return flake
     edge = sd.translate([0, -w/2])(edge)
     edge += sd.translate([l,0])(dot)
@@ -47,6 +48,7 @@ def snowflake(r=1, w=2, l=5):
 
 if __name__ == '__main__':
     flake = snowflake()
+    flake = sd.linear_extrude(height=7.5)(flake)
     print(sd.scad_render(flake))
     exit(0)
 

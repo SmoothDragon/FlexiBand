@@ -1,6 +1,7 @@
 *.swp
 *.stl
 *.scad
+*.gcode
 
 
 # Byte-compiled / optimized / DLL files

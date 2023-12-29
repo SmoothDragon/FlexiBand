@@ -27,10 +27,6 @@ def iterSmoothX(r, ratio=.25, n=1):
     for i in range(n):
         R = 2**i*2*(1+ratio)*r
         level = base + sd.union()(*[sd.translate(ij)(level) for ij in [(R,R), (-R,R), (R,-R), (-R,-R)]])
-    # R = 4*(1+ratio)*r
-    # level = base + sd.union()(*[sd.translate(ij)(level) for ij in [(R,R), (-R,R), (R,-R), (-R,-R)]])
-    # R = 8*(1+ratio)*r
-    # level = base + sd.union()(*[sd.translate(ij)(level) for ij in [(R,R), (-R,R), (R,-R), (-R,-R)]])
     return level
 
 if __name__ == '__main__':

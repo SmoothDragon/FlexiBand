@@ -72,7 +72,7 @@ if __name__ == '__main__':
     base = base - final
     base = sd.minkowski()(base, sd.circle(r=6, _fn=6))
     base = sd.linear_extrude(h)(base)
-    final = sd.linear_extrude(15)(final)
+    # final = sd.linear_extrude(15)(final)
     final = sd.translate([0,0,h])(final)
     final += base
     # final = twistTree2()

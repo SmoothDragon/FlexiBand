@@ -91,7 +91,7 @@ iter = 3
 dragon = np.array(list(gosper_path(*theta[:2], iter)))
 dragon = np.concatenate([dragon, theta[1]*dragon, theta[2]*dragon])
 
-gosper = polygon(points=list(zip(*xy(12.5*dragon))))
+gosper = polygon(points=list(zip(*xy(15*dragon))))
 gosper = minkowski()(gosper, circle(r=.15))
 
 gosper = linear_extrude(height=10)(gosper)

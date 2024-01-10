@@ -26,8 +26,8 @@ if __name__ == '__main__':
     h = 10
     final = heart(size)
     final = sd.rotate(45)(final)
-    final = splitFour(final, 0,11, gap=gap)
-    final = splitFour(final, 15,-2, gap=gap)
+    # final = splitFour(final, 0,11, gap=gap)
+    # final = splitFour(final, 15,-2, gap=gap)
     final = sd.linear_extrude(h)(final)
     final = sd.scad_render(final, file_header=f'$fn={fn};')
     print(final)

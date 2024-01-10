@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import solid as sd
+import solid2 as sd
 import numpy as np
 import pathlib
 import tempfile
@@ -90,7 +90,7 @@ class scadSVG:
         return '\n'.join(svg_lines)
 
 
-import solid as sd
+import solid2 as sd
 
 
 # Useful 2D functions
